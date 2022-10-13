@@ -2,6 +2,7 @@ package com.icops.DaraManagement.service;
 
 import com.icops.DaraManagement.model.Student;
 import com.icops.DaraManagement.model.enums.AttendanceMode;
+import com.icops.DaraManagement.model.enums.Gender;
 import com.icops.DaraManagement.model.enums.RecitationLevel;
 import com.icops.DaraManagement.repository.StudentDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,10 @@ public class StudentService {
     public Student findById(Long id) {
         Student student = studentDao.findById(id).orElse(null);
         return student;
+    }
+
+    public List<Student> findByGender(Gender gender) {
+        return studentDao.findByGender(gender);
     }
 
     public List<Student> findStudentByRecitationLevel(RecitationLevel recitationLevel) {

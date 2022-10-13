@@ -14,7 +14,6 @@ public class RecitationLevelConverter implements AttributeConverter<RecitationLe
     public String convertToDatabaseColumn(final RecitationLevel attribute) {
         return Optional.ofNullable(attribute).map(RecitationLevel::value).orElse(null);
     }
-
     @Override
     public RecitationLevel convertToEntityAttribute(final String dbData) {
         return RecitationLevel.decode(dbData);

@@ -15,7 +15,7 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-public abstract class PersonDetails {
+public class PersonDetails {
     @Id
     @GeneratedValue
     private Long id;
