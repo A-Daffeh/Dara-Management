@@ -7,8 +7,11 @@ import com.icops.DaraManagement.model.enums.RecitationLevel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface StudentDao extends JpaRepository<Student, User> {
+
+    Optional<Student> findById(Long id);
     List<Student> findByRecitationLevel(RecitationLevel recitationLevel);
     List<Student> findByAttendanceMode(AttendanceMode attendanceMode);
 }

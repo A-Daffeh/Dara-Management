@@ -15,22 +15,17 @@ public class StudentService {
     @Autowired
     private StudentDao studentDao;
 
-    public Student createStudent(Student student) {
+    public Student create(Student student) {
         return studentDao.save(student);
     }
 
-//    public List<Student> findStudents() {
-//        List<Student> students = studentDao.findAll();
-//        List<Student> results  = new ArrayList<>();
-//
-//        for(Student student: students) {
-//            results.add(student);
-//        }
-//        return results;
-//    }
-
     public List<Student> allStudents() {
         return studentDao.findAll();
+    }
+
+    public Student findById(Long id) {
+        Student student = studentDao.findById(id).orElse(null);
+        return student;
     }
 
     public List<Student> findStudentByRecitationLevel(RecitationLevel recitationLevel) {
@@ -40,4 +35,5 @@ public class StudentService {
     public List<Student> findByAttendanceMode(AttendanceMode attendanceMode) {
         return studentDao.findByAttendanceMode(attendanceMode);
     }
+
 }

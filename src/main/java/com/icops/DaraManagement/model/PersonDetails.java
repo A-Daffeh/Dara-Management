@@ -1,5 +1,6 @@
 package com.icops.DaraManagement.model;
 
+import com.icops.DaraManagement.model.enums.Gender;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,7 @@ public abstract class PersonDetails {
     private String middleName;
     @Valid @NotNull
     private String lastName;
+    private Gender gender;
     @Valid @Pattern(regexp = "^[0-9]{3}-[0-9]{3}-[0-9]{4}$", message = "Invalid phone number. It must be in the format XXX-XXX-XXXX")
     private String primaryPhone;
     @Valid

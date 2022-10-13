@@ -1,6 +1,7 @@
 package com.icops.DaraManagement.model;
 
 import com.icops.DaraManagement.model.enums.AmPm;
+import com.icops.DaraManagement.model.enums.AttendanceDays;
 import com.icops.DaraManagement.model.enums.AttendanceMode;
 import com.icops.DaraManagement.model.enums.RecitationLevel;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,6 @@ public class Student extends PersonDetails {
     private LocalDate dob;
 
     private RecitationLevel recitationLevel;
-//    private List<String> attendanceDays = new ArrayList<>();
     private AttendanceMode attendanceMode;
 
     private int startTime;

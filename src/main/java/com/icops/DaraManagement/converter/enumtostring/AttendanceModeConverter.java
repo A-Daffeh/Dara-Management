@@ -1,4 +1,4 @@
-package com.icops.DaraManagement.converter;
+package com.icops.DaraManagement.converter.enumtostring;
 
 import com.icops.DaraManagement.model.enums.AttendanceMode;
 import org.springframework.stereotype.Component;

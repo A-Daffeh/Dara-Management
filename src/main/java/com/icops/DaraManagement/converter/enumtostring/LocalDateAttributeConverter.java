@@ -1,4 +1,4 @@
-package com.icops.DaraManagement.converter;
+package com.icops.DaraManagement.converter.enumtostring;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
