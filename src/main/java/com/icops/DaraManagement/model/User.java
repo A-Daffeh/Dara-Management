@@ -17,14 +17,8 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @Data
 @Table(name = "users")
-//@DiscriminatorValue("users")
 @Entity
 public class User extends PersonDetails {
-//    @Id
-//    @GeneratedValue
-//    private Long id;
-//    @OneToOne(cascade = CascadeType.ALL)
-//    private PersonDetails personDetails;
     @NotEmpty
     @Email
     private String email;
