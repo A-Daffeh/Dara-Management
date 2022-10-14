@@ -4,6 +4,7 @@ import com.icops.DaraManagement.model.Student;
 import com.icops.DaraManagement.model.enums.AttendanceMode;
 import com.icops.DaraManagement.model.enums.Gender;
 import com.icops.DaraManagement.model.enums.RecitationLevel;
+
 import java.util.List;
 
 public interface StudentService {
@@ -18,5 +19,7 @@ public interface StudentService {
     List<Student> findStudentByRecitationLevel(RecitationLevel recitationLevel);
 
     List<Student> findByAttendanceMode(AttendanceMode attendanceMode);
+
+
 
 }
