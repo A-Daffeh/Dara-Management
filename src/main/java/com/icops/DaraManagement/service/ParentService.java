@@ -4,48 +4,23 @@ import com.icops.DaraManagement.model.Parent;
 
 import com.icops.DaraManagement.model.Student;
 import com.icops.DaraManagement.model.enums.Gender;
-import com.icops.DaraManagement.repository.ParentDao;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class ParentService {
+public interface ParentService {
 
-    @Autowired
-    private ParentDao parentDao;
+    Parent create(final Parent parent);
+    List<Parent> allParents();
 
-    public Parent create(final Parent parent) {
-        return parentDao.save(parent);
-    }
+    Parent findById(Long id);
 
-    public List<Parent> allParents() {
-        return parentDao.findAll();
-    }
+    List<Parent> findByStudent(Long id);
 
-    public Parent findById(Long id) {
-        Parent parent = parentDao.findById(id).orElse(null);
-        return parent;
-    }
+    Long findStudentIdByLastname(String lastName);
 
-    public List<Parent> findByStudent(Long id) {
-       return  parentDao.findByStudent(id);
-    }
+    List<Parent> findByGender(Gender gender);
 
-    public Long findStudentIdByLastname(String lastName){
-         Long st= parentDao.findStudentIdByLastname(lastName);
-        return st;
-    }
-    public List<Parent> findByGender(Gender gender) {return parentDao.findByGender(gender);}
-    public Parent updateParent(Parent parent, Long id)
-    {
+    Parent updateParent(Parent parent, Long id);
 
-        Parent updatedParent = parentDao.save(parent);
-        return updatedParent;
-    }
-
-    public void deleteParent(Long id){
-        parentDao.deleteById(id);
-    }
+    void deleteParent(Long id);
 }
