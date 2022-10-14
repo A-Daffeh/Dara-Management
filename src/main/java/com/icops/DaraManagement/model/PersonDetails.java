@@ -17,7 +17,7 @@ import javax.validation.constraints.Pattern;
 @Entity
 public class PersonDetails {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Valid @NotNull
     private String firstName;

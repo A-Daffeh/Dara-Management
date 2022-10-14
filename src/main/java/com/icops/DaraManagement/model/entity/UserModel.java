@@ -1,23 +1,19 @@
-package com.icops.DaraManagement.model;
+package com.icops.DaraManagement.model.entity;
 
-
+import com.icops.DaraManagement.model.PersonDetails;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-import javax.persistence.*;
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-@Slf4j
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@Table(name = "users")
-@Entity
-public class User extends PersonDetails {
+public class UserModel extends PersonDetails {
     @NotEmpty
     @Email
     private String email;
@@ -25,6 +21,5 @@ public class User extends PersonDetails {
     @Size(min = 8, message = "Password should have at least 8 characters")
     @Column(length = 60)
     private String password;
-    private String role;
-    private boolean enabled = false;
+    private String matchingPassword;
 }
