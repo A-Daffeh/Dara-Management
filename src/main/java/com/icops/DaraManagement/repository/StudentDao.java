@@ -16,4 +16,7 @@ public interface StudentDao extends JpaRepository<Student, User> {
     List<Student> findByGender(Gender gender);
     List<Student> findByRecitationLevel(RecitationLevel recitationLevel);
     List<Student> findByAttendanceMode(AttendanceMode attendanceMode);
+
+
+
 }

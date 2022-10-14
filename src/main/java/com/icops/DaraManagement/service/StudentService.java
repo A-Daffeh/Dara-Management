@@ -8,7 +8,7 @@ import com.icops.DaraManagement.repository.StudentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Service
@@ -40,5 +40,7 @@ public class StudentService {
     public List<Student> findByAttendanceMode(AttendanceMode attendanceMode) {
         return studentDao.findByAttendanceMode(attendanceMode);
     }
+
+
 
 }
