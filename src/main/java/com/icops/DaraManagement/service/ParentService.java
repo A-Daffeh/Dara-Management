@@ -1,6 +1,7 @@
 package com.icops.DaraManagement.service;
 
 import com.icops.DaraManagement.model.Parent;
+
 import com.icops.DaraManagement.model.Student;
 import com.icops.DaraManagement.model.enums.Gender;
 import com.icops.DaraManagement.repository.ParentDao;
@@ -47,5 +48,4 @@ public class ParentService {
     public void deleteParent(Long id){
         parentDao.deleteById(id);
     }
-
 }

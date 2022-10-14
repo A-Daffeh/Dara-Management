@@ -4,42 +4,21 @@ import com.icops.DaraManagement.model.Student;
 import com.icops.DaraManagement.model.enums.AttendanceMode;
 import com.icops.DaraManagement.model.enums.Gender;
 import com.icops.DaraManagement.model.enums.RecitationLevel;
-import com.icops.DaraManagement.repository.StudentDao;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 
 import java.util.List;
 
-@Service
-public class StudentService {
-    @Autowired
-    private StudentDao studentDao;
+public interface StudentService {
+    Student create(Student student);
 
-    public Student create(Student student) {
-        return studentDao.save(student);
-    }
+    List<Student> allStudents();
 
-    public List<Student> allStudents() {
-        return studentDao.findAll();
-    }
+    Student findById(Long id);
 
-    public Student findById(Long id) {
-        Student student = studentDao.findById(id).orElse(null);
-        return student;
-    }
+    List<Student> findByGender(Gender gender);
 
-    public List<Student> findByGender(Gender gender) {
-        return studentDao.findByGender(gender);
-    }
+    List<Student> findStudentByRecitationLevel(RecitationLevel recitationLevel);
 
-    public List<Student> findStudentByRecitationLevel(RecitationLevel recitationLevel) {
-        return studentDao.findByRecitationLevel(recitationLevel);
-    }
-
-    public List<Student> findByAttendanceMode(AttendanceMode attendanceMode) {
-        return studentDao.findByAttendanceMode(attendanceMode);
-    }
+    List<Student> findByAttendanceMode(AttendanceMode attendanceMode);
 
 
 

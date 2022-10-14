@@ -1,4 +1,4 @@
-package com.icops.DaraManagement;
+package com.icops.DaraManagement.config;
 
 import com.icops.DaraManagement.converter.RequestParameterConverter;
 import org.springframework.beans.factory.ListableBeanFactory;
