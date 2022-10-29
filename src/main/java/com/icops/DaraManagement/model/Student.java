@@ -20,7 +20,7 @@ import java.util.List;
 @Entity
 public class Student extends PersonDetails {
     @Column
-    private String dob;
+    private LocalDate dob;
 
     private RecitationLevel recitationLevel;
     private AttendanceMode attendanceMode;
