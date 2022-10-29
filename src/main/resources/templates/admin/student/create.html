@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/admin_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Add Student</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <section class="content-header">
+
+
+    </section>
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-10">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Student Form</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form th:object="${student}" th:action="@{/admin/addStudent}" method="POST">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="inputFirstName">First Name</label>
+                                    <input type="text" th:field="*{firstName}" class="form-control" id="inputFirstName" placeholder="Enter Firstname">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputLastName">Last Name</label>
+                                    <input type="text" th:field="*{lastName}" class="form-control" id="inputLastName" placeholder="Enter Lastname">
+                                </div>
+                                <div class="form-group">
+                                    <label>Gender</label>
+                                    <select th:field="*{gender}" class="form-control select2" style="width: 100%;">
+                                        <option  th:value="male" selected="selected">Male</option>
+                                        <option  th:value="female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Primary Phone:</label>
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                        </div>
+                                        <input th:field="*{primaryPhone}" type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                                <div class="form-group">
+
+                                    <div><label for="addrLine">Address line</label>
+                                    <input th:field="*{address.addressLine1}" type="text" class="form-control" id="addrLine" placeholder="Address Line">
+                                    </div>
+
+                                    <div><label for="city">City</label>
+                                    <input th:field="*{address.city}" type="text" class="form-control" id="city" placeholder="Enter City">
+                                    </div>
+
+                                    <div><label for="state">State</label>
+                                        <input th:field="*{address.state}" type="text" class="form-control" id="state" placeholder="Enter State">
+                                    </div>
+
+                                    <div><label for="postalCode">Postal Code</label>
+                                        <input th:field="*{address.postalCode}" type="number" class="form-control" id="postalCode" placeholder="Enter Postal Code">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Birthdate:</label>
+                                    <div class="input-group date" id="dob" data-target-input="nearest">
+                                        <input th:field="*{dob}" type="text" class="form-control" />
+<!--                                        <div class="input-group-append" data-target="#dob" data-toggle="datetimepicker">-->
+<!--                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>-->
+<!--                                        </div>-->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Recitation Level</label>
+                                    <select th:field="*{recitationLevel}" class="form-control select2" style="width: 100%;">
+                                        <option  th:value="basics" selected="selected">basics</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Attendance Mode</label>
+                                    <select th:field="*{attendanceMode}" class="form-control select2" style="width: 100%;">
+                                        <option  th:value="online"  selected="selected">Online</option>
+                                        <option th:value="in-person">In Person</option>
+<!--                                        <option>Hybrid</option>-->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Start Time</label>
+                                    <input th:field="*{startTime}" type="number" class="form-control" id="startTime" placeholder="Enter StartTime">
+                                </div>
+                                <div class="form-group">
+                                    <label>Start Range</label>
+                                    <select th:field="*{startRange}" class="form-control select2" style="width: 100%;">
+                                        <option  th:value="AM" selected="selected">AM</option>
+                                        <option  th:value="PM">PM</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>End Time:</label>
+
+                                    <input th:field="*{endTime}" type="number" class="form-control" id="endTime" placeholder="Enter EndTime">
+                                    </div>
+                                    <!-- /.input group -->
+
+                            <div class="form-group">
+                                <label>End Range</label>
+                                <select th:field="*{endRange}" class="form-control select2" style="width: 100%;">
+                                    <option  th:value="AM"  selected="selected">AM</option>
+                                    <option  th:value="PM">PM</option>
+                                </select>
+                            </div>
+                            </div>
+<!--                                <div class="form-group">-->
+<!--                                    <label for="exampleInputFile">File input</label>-->
+<!--                                    <div class="input-group">-->
+<!--                                        <div class="custom-file">-->
+<!--                                            <input type="file" class="custom-file-input" id="exampleInputFile">-->
+<!--                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>-->
+<!--                                        </div>-->
+<!--                                        <div class="input-group-append">-->
+<!--                                            <span class="input-group-text">Upload</span>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                            </div>-->
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+
+        //Datemask dd/mm/yyyy
+        $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+        //Datemask2 mm/dd/yyyy
+        $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+        //Money Euro
+        $('[data-mask]').inputmask()
+
+        //Date picker
+        $('#dob').datetimepicker({
+            format: 'L'
+        });
+
+        //Date and time picker
+        $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+
+        //Date range picker
+        $('#reservation').daterangepicker()
+        //Date range picker with time picker
+        $('#dob').daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 30,
+            locale: {
+                format: 'MM/DD/YYYY hh:mm A'
+            }
+        })
+        //Date range as a button
+        $('#daterange-btn').daterangepicker(
+            {
+                ranges   : {
+                    'Today'       : [moment(), moment()],
+                    'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                startDate: moment().subtract(29, 'days'),
+                endDate  : moment()
+            },
+            function (start, end) {
+                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+            }
+        )
+
+        //Timepicker
+        $('#timepicker').datetimepicker({
+            format: 'LT'
+        })
+
+        //Bootstrap Duallistbox
+        $('.duallistbox').bootstrapDualListbox()
+
+        //Colorpicker
+        $('.my-colorpicker1').colorpicker()
+        //color picker with addon
+        $('.my-colorpicker2').colorpicker()
+
+        $('.my-colorpicker2').on('colorpickerChange', function(event) {
+            $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+        })
+
+        $("input[data-bootstrap-switch]").each(function(){
+            $(this).bootstrapSwitch('state', $(this).prop('checked'));
+        })
+
+    })
+    // BS-Stepper Init
+    document.addEventListener('DOMContentLoaded', function () {
+        window.stepper = new Stepper(document.querySelector('.bs-stepper'))
+    })
+
+    // DropzoneJS Demo Code Start
+    Dropzone.autoDiscover = false
+
+    // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
+    var previewNode = document.querySelector("#template")
+    previewNode.id = ""
+    var previewTemplate = previewNode.parentNode.innerHTML
+    previewNode.parentNode.removeChild(previewNode)
+
+    var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+        url: "/target-url", // Set the url
+        thumbnailWidth: 80,
+        thumbnailHeight: 80,
+        parallelUploads: 20,
+        previewTemplate: previewTemplate,
+        autoQueue: false, // Make sure the files aren't queued until manually added
+        previewsContainer: "#previews", // Define the container to display the previews
+        clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
+    })
+
+    myDropzone.on("addedfile", function(file) {
+        // Hookup the start button
+        file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file) }
+    })
+
+    // Update the total progress bar
+    myDropzone.on("totaluploadprogress", function(progress) {
+        document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
+    })
+
+    myDropzone.on("sending", function(file) {
+        // Show the total progress bar when upload starts
+        document.querySelector("#total-progress").style.opacity = "1"
+        // And disable the start button
+        file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
+    })
+
+    // Hide the total progress bar when nothing's uploading anymore
+    myDropzone.on("queuecomplete", function(progress) {
+        document.querySelector("#total-progress").style.opacity = "0"
+    })
+
+    // Setup the buttons for all transfers
+    // The "add files" button doesn't need to be setup because the config
+    // `clickable` has already been specified.
+    document.querySelector("#actions .start").onclick = function() {
+        myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
+    }
+    document.querySelector("#actions .cancel").onclick = function() {
+        myDropzone.removeAllFiles(true)
+    }
+    // DropzoneJS Demo Code End
+</script>
+</body>
+</html>
