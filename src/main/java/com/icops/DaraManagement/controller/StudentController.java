@@ -1,5 +1,6 @@
 package com.icops.DaraManagement.controller;
 
+import com.icops.DaraManagement.model.PersonDetails;
 import com.icops.DaraManagement.model.Student;
 import com.icops.DaraManagement.model.enums.AttendanceMode;
 import com.icops.DaraManagement.model.enums.Gender;
@@ -8,25 +9,36 @@ import com.icops.DaraManagement.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@RestController
-@RequestMapping("/api/students")
+@Controller
+@RequestMapping("/admin")
 public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/")
-    public ResponseEntity<List<Student>> allStudents() {
+
+    @RequestMapping("/students")
+    public String allStudents(Model model) {
         List<Student> students = studentService.allStudents();
-        return new ResponseEntity<>(students, HttpStatus.OK);
+        model.addAttribute("students", students);
+        return "/admin/student/index";
     }
 
-    @PostMapping("/create-student")
-    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
-        Student newStudent = studentService.create(student);
-        return new ResponseEntity<>(newStudent, HttpStatus.CREATED);
+    @GetMapping("/newStudent")
+    public String addStudent(Model model) {
+        Student student = new Student();
+        model.addAttribute("student", student);
+        return "/admin/student/create";
+    }
+
+    @PostMapping("/addStudent")
+    public String createStudent(@ModelAttribute Student student) {
+        studentService.create(student);
+        return "redirect:/admin/students";
     }
 
     @GetMapping("/genders/{gender}")
@@ -58,4 +70,5 @@ public class StudentController {
         Student newStudent = studentService.create(student);
         return new ResponseEntity<>(newStudent, HttpStatus.OK);
     }
+
 }
