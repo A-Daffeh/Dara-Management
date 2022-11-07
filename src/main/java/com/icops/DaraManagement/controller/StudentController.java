@@ -8,52 +8,76 @@ import com.icops.DaraManagement.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-@RestController
-@RequestMapping("/api/students")
+@Controller
 public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/")
-    public ResponseEntity<List<Student>> allStudents() {
+    @GetMapping("/students")
+    public String allStudents(Model model) {
         List<Student> students = studentService.allStudents();
-        return new ResponseEntity<>(students, HttpStatus.OK);
+        model.addAttribute("students", students);
+        return "students/index";
     }
 
-    @PostMapping("/create-student")
-    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
-        Student newStudent = studentService.create(student);
-        return new ResponseEntity<>(newStudent, HttpStatus.CREATED);
+    @GetMapping("/addStudent")
+    public String addStudent(Model model) {
+        Student student = new Student();
+        model.addAttribute("student", student);
+        return "students/create";
     }
 
-    @GetMapping("/genders/{gender}")
+    @PostMapping("/newStudent")
+    public String createStudent(@ModelAttribute("student") Student student) {
+        studentService.create(student);
+        return "redirect:/students";
+    }
+
+//    @GetMapping("/edit/{id}")
+//    public ModelAndView editCountry(@PathVariable(name = "id") Long id) {
+//        Student student = getStudent(id);
+//        ModelAndView mav = new ModelAndView("students/edit");
+//        mav.addObject("student", student);
+//        return mav;
+//    }
+    @GetMapping("/edit/{id}")
+    public String editCountry(@PathVariable(value = "id") long id, Model model) {
+        Student student = getStudent(id);
+        model.addAttribute("student", student);
+        return "students/edit";
+    }
+
+    @GetMapping("/studentByGender/{gender}")
     public ResponseEntity<List<Student>> getStudentByGender(@PathVariable("gender")Gender gender) {
         List<Student> students = studentService.findByGender(gender);
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
 
-    @GetMapping("/recitations/{recitationLevel}")
+    @GetMapping("/studentRecitationLevel/{recitationLevel}")
     public ResponseEntity<List<Student>> getStudentByRecitationLevel(@PathVariable("recitationLevel")RecitationLevel recitationLevel) {
         List<Student> students = studentService.findStudentByRecitationLevel(recitationLevel);
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
 
-    @GetMapping("/attendance/{attendanceMode}")
+    @GetMapping("/studentAttendanceMode/{attendanceMode}")
     public ResponseEntity<List<Student>> getStudentByAttendanceMode(@PathVariable("attendanceMode")AttendanceMode attendanceMode) {
         List<Student> students = studentService.findByAttendanceMode(attendanceMode);
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
 
     @GetMapping("/student/{id}")
-    public ResponseEntity<Student> getStudent(@PathVariable("id")Long id) {
+    public Student getStudent(@PathVariable("id")Long id) {
         Student student = studentService.findById(id);
-        return new ResponseEntity<>(student, HttpStatus.OK);
+        return student;
     }
 
-    @PutMapping("/update")
+    @PutMapping("/updateStudent")
     public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
         Student newStudent = studentService.create(student);
         return new ResponseEntity<>(newStudent, HttpStatus.OK);

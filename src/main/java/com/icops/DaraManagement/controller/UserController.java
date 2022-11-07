@@ -19,7 +19,7 @@ public class UserController {
 
     @GetMapping("/users")
     public String studentHome() {
-        return "student/index";
+        return "students/index";
     }
 
     @PostMapping("/create")
