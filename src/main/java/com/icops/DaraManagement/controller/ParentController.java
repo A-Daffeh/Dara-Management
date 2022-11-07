@@ -1,40 +1,44 @@
 package com.icops.DaraManagement.controller;
 
 import com.icops.DaraManagement.model.Parent;
-import com.icops.DaraManagement.model.Student;
 import com.icops.DaraManagement.model.enums.Gender;
-import com.icops.DaraManagement.model.enums.RecitationLevel;
-import com.icops.DaraManagement.repository.ParentDao;
 import com.icops.DaraManagement.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/parents")
+@Controller
 public class ParentController {
 
     @Autowired
     private ParentService parentService;
 
-    @PostMapping("/create-parent")
-    public ResponseEntity<Parent> createParent(@RequestBody Parent parent) {
-        Parent newParent = parentService.create(parent);
-        return new ResponseEntity<>(newParent, HttpStatus.CREATED);
-    }
-    @GetMapping("/")
-    public ResponseEntity<List<Parent>> allParents() {
+    @GetMapping("/parents")
+    public String allParents(Model model) {
         List<Parent> parents = parentService.allParents();
-        if (parents != null) {
-            return new ResponseEntity<>(parents, HttpStatus.OK);
-        }
-        else
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        model.addAttribute("parents", parents);
+        return "parents/index";
 
     }
+
+    @GetMapping("addParent")
+    public String addParent(Model model) {
+        Parent parent = new Parent();
+        model.addAttribute("parent", parent);
+        return "parents/create";
+    }
+
+    @PostMapping("/newParent")
+    public String createParent(@ModelAttribute Parent parent) {
+        parentService.create(parent);
+        return "redirect:/parents";
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Parent> updateParent(@RequestBody Parent parent, @PathVariable Long id){
 
@@ -51,7 +55,6 @@ public class ParentController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
 
     @GetMapping("/{gender}")
     public ResponseEntity<List<Parent>> getParentByGender(@PathVariable("gender") Gender gender) {

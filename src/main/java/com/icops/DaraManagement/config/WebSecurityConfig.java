@@ -10,7 +10,16 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class WebSecurityConfig {
     private static final String[] WHITE_LIST_URLS = {
-            "/home"
+            "/dashboard",
+            "/verifyRegistration*",
+            "/resendVerificationToken*",
+            "/students",
+            "/addStudent",
+            "/edit*",
+            "/parents",
+            "/addParent",
+            "/editParent*"
+
     };
 
     @Bean
