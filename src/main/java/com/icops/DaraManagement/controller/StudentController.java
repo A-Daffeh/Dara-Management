@@ -1,5 +1,6 @@
 package com.icops.DaraManagement.controller;
 
+import com.icops.DaraManagement.model.PersonDetails;
 import com.icops.DaraManagement.model.Student;
 import com.icops.DaraManagement.model.enums.AttendanceMode;
 import com.icops.DaraManagement.model.enums.Gender;
@@ -82,4 +83,5 @@ public class StudentController {
         Student newStudent = studentService.create(student);
         return new ResponseEntity<>(newStudent, HttpStatus.OK);
     }
+
 }
