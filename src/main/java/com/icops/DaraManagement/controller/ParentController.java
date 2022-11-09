@@ -1,7 +1,6 @@
 package com.icops.DaraManagement.controller;
 
 import com.icops.DaraManagement.model.Parent;
-import com.icops.DaraManagement.model.Student;
 import com.icops.DaraManagement.model.enums.Gender;
 import com.icops.DaraManagement.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +13,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/parents")
 public class ParentController {
 
     @Autowired
     private ParentService parentService;
 
-    @GetMapping("")
+    @GetMapping("/parents")
     public String allParents(Model model) {
         List<Parent> parents = parentService.allParents();
         model.addAttribute("parents", parents);
@@ -28,14 +26,14 @@ public class ParentController {
 
     }
 
-    @GetMapping("/add")
+    @GetMapping("/parents/add")
     public String addParent(Model model) {
         Parent parent = new Parent();
         model.addAttribute("parent", parent);
         return "parents/create";
     }
 
-    @PostMapping("/new")
+    @PostMapping("parents/create")
     public String createParent(@ModelAttribute Parent parent) {
         parentService.create(parent);
         return "redirect:/parents";

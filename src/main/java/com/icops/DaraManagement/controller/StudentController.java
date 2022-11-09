@@ -1,6 +1,5 @@
 package com.icops.DaraManagement.controller;
 
-import com.icops.DaraManagement.model.PersonDetails;
 import com.icops.DaraManagement.model.Student;
 import com.icops.DaraManagement.model.enums.AttendanceMode;
 import com.icops.DaraManagement.model.enums.Gender;
@@ -12,47 +11,44 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 @Controller
-@RequestMapping("/students")
 public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("")
+    @GetMapping("/students")
     public String allStudents(Model model) {
         List<Student> students = studentService.allStudents();
         model.addAttribute("students", students);
         return "students/index";
     }
 
-    @GetMapping("/add")
+    @GetMapping("/students/add")
     public String addStudent(Model model) {
         Student student = new Student();
         model.addAttribute("student", student);
         return "students/create";
     }
 
-    @PostMapping("/new")
+    @PostMapping("/students/create")
     public String createStudent(@ModelAttribute("student") Student student) {
         studentService.create(student);
         return "redirect:/students";
     }
 
-//    @GetMapping("/edit/{id}")
-//    public ModelAndView editCountry(@PathVariable(name = "id") Long id) {
-//        Student student = getStudent(id);
-//        ModelAndView mav = new ModelAndView("students/edit");
-//        mav.addObject("student", student);
-//        return mav;
-//    }
-    @GetMapping("/edit/{id}")
-    public String editCountry(@PathVariable(value = "id") long id, Model model) {
+    @GetMapping("/editStudent/{id}")
+    public String editStudent(@PathVariable(value = "id") long id, Model model) {
         Student student = getStudent(id);
         model.addAttribute("student", student);
         return "students/edit";
+    }
+    @GetMapping("/showStudent/{id}")
+    public String viewStudent(@PathVariable(value = "id") long id, Model model) {
+        Student student = getStudent(id);
+        model.addAttribute("student", student);
+        return "/students/show";
     }
 
     @GetMapping("/studentByGender/{gender}")

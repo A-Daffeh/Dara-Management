@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -64,9 +64,8 @@
             </li><!-- End Search Icon-->
 
             <li class="nav-item dropdown pe-3">
-
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                    <img th:src="@{assets/img/profile-img.jpg}" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
                 </a><!-- End Profile Iamge Icon -->
 
@@ -226,7 +225,7 @@
             <h5 class="card-title">Add New Student</h5>
 
             <!-- Multi Columns Form -->
-            <form class="row g-3" th:object="${student}" th:action="@{/newStudent}" method="POST">
+            <form class="row g-3" th:object="${student}" th:action="@{/students/create}" method="POST">
                 <div class="col-md-4">
                     <label for="inputFirstName" class="form-label">First Name</label>
                     <input type="text" th:field="*{firstName}" class="form-control" id="inputFirstName">
