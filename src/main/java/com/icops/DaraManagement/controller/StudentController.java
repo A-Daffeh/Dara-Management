@@ -16,25 +16,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 @Controller
+@RequestMapping("/students")
 public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/students")
+    @GetMapping("")
     public String allStudents(Model model) {
         List<Student> students = studentService.allStudents();
         model.addAttribute("students", students);
         return "students/index";
     }
 
-    @GetMapping("/addStudent")
+    @GetMapping("/add")
     public String addStudent(Model model) {
         Student student = new Student();
         model.addAttribute("student", student);
         return "students/create";
     }
 
-    @PostMapping("/newStudent")
+    @PostMapping("/new")
     public String createStudent(@ModelAttribute("student") Student student) {
         studentService.create(student);
         return "redirect:/students";

@@ -13,13 +13,8 @@ public class WebSecurityConfig {
             "/dashboard",
             "/verifyRegistration*",
             "/resendVerificationToken*",
-            "/students",
-            "/addStudent",
-            "/edit*",
-            "/parents",
-            "/addParent",
-            "/editParent*"
-
+            "/students*",
+            "/parents*"
     };
 
     @Bean

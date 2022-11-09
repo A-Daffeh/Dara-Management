@@ -41,7 +41,7 @@
 
   <div class="d-flex align-items-center justify-content-between">
     <a href="index.html" class="logo d-flex align-items-center">
-      <img src="assets/img/logo.png" alt="">
+      <img src="../assets/img/logo.png" alt="">
       <span class="d-none d-lg-block">ICOPS</span>
     </a>
     <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -66,7 +66,7 @@
       <li class="nav-item dropdown pe-3">
 
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-          <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+          <img src="../assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
           <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
         </a><!-- End Profile Iamge Icon -->
 
@@ -214,7 +214,7 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a th:href="@{/dashboard}">Dashboard</a></li>
         <li class="breadcrumb-item">Pages</li>
-        <li class="breadcrumb-item active">Add Student</li>
+        <li class="breadcrumb-item active">Update Student</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -223,67 +223,108 @@
 
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">Add New Parent</h5>
+      <h5 class="card-title">Update Parent Info</h5>
 
       <!-- Multi Columns Form -->
-      <form class="row g-3" th:object="${parent}" th:action="@{/newParent}" method="POST">
-        <div class="col-md-4">
-          <label for="inputFirstName" class="form-label">First Name</label>
-          <input type="text" th:field="*{firstName}" class="form-control" id="inputFirstName">
-        </div>
-        <div class="col-md-4">
-          <label for="inputMiddleName" class="form-label">Middle Name</label>
-          <input type="text" th:field="*{middleName}" class="form-control" id="inputMiddleName">
-        </div>
-        <div class="col-md-4">
-          <label for="inputLastName" class="form-label">Last Name</label>
-          <input type="text" th:field="*{lastName}" class="form-control" id="inputLastName">
-        </div>
-        <div class="col-md-4">
-          <label for="inputGender" class="form-label">Gender</label>
-          <select id="inputGender" class="form-select">
-            <option value="" selected>Choose...</option>
-            <option th:value="male">Male</option>
-            <option th:value="female">Female</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label for="inputEmail" class="form-label">Email</label>
-          <input type="email" th:field="*{email}" class="form-control" id="inputEmail" placeholder="Enter Email">
-        </div>
-        <div class="col-md-4">
-          <label for="inputPhone" class="form-label">Primary Phone</label>
-          <input type="text" th:field="*{primaryPhone}" class="form-control" id="inputPhone">
-        </div>
-        <div class="col-6">
-          <label for="inputAddress5" class="form-label">Address</label>
-          <input type="text" th:field="*{address.addressLine1}" class="form-control" id="inputAddress5" placeholder="1234 Main St">
-        </div>
-        <div class="col-6">
-          <label for="inputAddress2" class="form-label">Address 2</label>
-          <input type="text" th:field="*{address.addressLine2}" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-        </div>
-        <div class="col-md-6">
-          <label for="inputCity" class="form-label">City</label>
-          <input type="text" th:field="*{address.city}" class="form-control" id="inputCity" placeholder="Enter City">
-        </div>
-        <div class="col-md-3">
-          <label for="inputState" class="form-label">State</label>
-          <select id="inputState" class="form-select">
-            <option value="" selected>Choose...</option>
-            <option th:value="WA">WA</option>
-          </select>
-        </div>
+<!--      <form class="row g-3" th:object="${student}" th:action="@{/students/new}" method="POST">-->
+<!--        <div class="col-md-4">-->
+<!--          <label for="inputFirstName" class="form-label">First Name</label>-->
+<!--          <input type="text" th:field="*{firstName}" class="form-control" id="inputFirstName">-->
+<!--        </div>-->
+<!--        <div class="col-md-4">-->
+<!--          <label for="inputMiddleName" class="form-label">Middle Name</label>-->
+<!--          <input type="text" th:field="*{middleName}" class="form-control" id="inputMiddleName">-->
+<!--        </div>-->
+<!--        <div class="col-md-4">-->
+<!--          <label for="inputLastName" class="form-label">Last Name</label>-->
+<!--          <input type="text" th:field="*{lastName}" class="form-control" id="inputLastName">-->
+<!--        </div>-->
+<!--        <div class="col-md-4">-->
+<!--          <label for="inputGender" class="form-label">Gender</label>-->
+<!--          <select th:field="*{gender}" id="inputGender" class="form-select">-->
+<!--            <option value="" selected>Choose...</option>-->
+<!--            <option th:value="male">Male</option>-->
+<!--            <option th:value="female">Female</option>-->
+<!--          </select>-->
+<!--        </div>-->
+<!--        <div class="col-md-4">-->
+<!--          <label for="inputDOB" class="form-label">Date Of Birth</label>-->
+<!--          <input type="date" th:field="*{dob}" class="form-control" id="inputDOB" placeholder="Enter Date Of Birth">-->
+<!--        </div>-->
+<!--        <div class="col-md-4">-->
+<!--          <label for="inputPhone" class="form-label">Primary Phone</label>-->
+<!--          <input type="text" th:field="*{primaryPhone}" class="form-control" id="inputPhone">-->
+<!--        </div>-->
+<!--        <div class="col-md-6">-->
+<!--          <label for="inputAttndMode" class="form-label">Attendance Mode</label>-->
+<!--          <select th:field="*{attendanceMode}" id="inputAttndMode" class="form-select">-->
+<!--            <option value="" selected>Choose...</option>-->
+<!--            <option th:value="online">Online</option>-->
+<!--            <option th:value="in-person">In Person</option>-->
+<!--          </select>-->
+<!--        </div>-->
+<!--        <div class="col-md-6">-->
+<!--          <label for="inputRecitLevel" class="form-label">Recitation Level</label>-->
+<!--          <select th:field="*{recitationLevel}" id="inputRecitLevel" class="form-select">-->
+<!--            <option value="" selected>Choose...</option>-->
+<!--            <option th:value="basics">Basics</option>-->
+<!--            <option th:value="quran">Quran</option>-->
+<!--          </select>-->
+<!--        </div>-->
+<!--        <div class="col-6">-->
+<!--          <label for="inputAddress5" class="form-label">Address</label>-->
+<!--          <input type="text" th:field="*{address.addressLine1}" class="form-control" id="inputAddress5" placeholder="1234 Main St">-->
+<!--        </div>-->
+<!--        <div class="col-6">-->
+<!--          <label for="inputAddress2" class="form-label">Address 2</label>-->
+<!--          <input type="text" th:field="*{address.addressLine2}" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">-->
+<!--        </div>-->
+<!--        <div class="col-md-6">-->
+<!--          <label for="inputCity" class="form-label">City</label>-->
+<!--          <input type="text" th:field="*{address.city}" class="form-control" id="inputCity" placeholder="Enter City">-->
+<!--        </div>-->
+<!--        <div class="col-md-3">-->
+<!--          <label for="inputState" class="form-label">State</label>-->
+<!--          <select th:field="*{address.state}" id="inputState" class="form-select">-->
+<!--            <option value="" selected>Choose...</option>-->
+<!--            <option th:value="WA">WA</option>-->
+<!--          </select>-->
+<!--        </div>-->
 
-        <div class="col-md-3">
-          <label for="inputZip" class="form-label">Zip</label>
-          <input type="text" th:field="*{address.postalCode}" class="form-control" id="inputZip" placeholder="Enter Zip Code">
-        </div>
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <button type="reset" class="btn btn-secondary">Reset</button>
-        </div>
-      </form><!-- End Multi Columns Form -->
+<!--        <div class="col-md-3">-->
+<!--          <label for="inputZip" class="form-label">Zip</label>-->
+<!--          <input type="text" th:field="*{address.postalCode}" class="form-control" id="inputZip" placeholder="Enter Zip Code">-->
+<!--        </div>-->
+
+<!--        <div class="col-md-3">-->
+<!--          <label for="inputStartTime" class="form-label">Start Time</label>-->
+<!--          <input type="text" th:field="*{startTime}" class="form-control" id="inputStartTime" placeholder="Enter Start Time">-->
+<!--        </div>-->
+<!--        <div class="col-md-3">-->
+<!--          <label for="inputStartRange" class="form-label">Start Range</label>-->
+<!--          <select th:field="*{startRange}" id="inputStartRange" class="form-select">-->
+<!--            <option value="" selected>Choose...</option>-->
+<!--            <option th:value="AM">AM</option>-->
+<!--            <option th:value="PM">PM</option>-->
+<!--          </select>-->
+<!--        </div>-->
+<!--        <div class="col-md-3">-->
+<!--          <label for="inputEndTime" class="form-label">End Time</label>-->
+<!--          <input type="text" th:field="*{endTime}" class="form-control" id="inputEndTime" placeholder="Enter End Time">-->
+<!--        </div>-->
+<!--        <div class="col-md-3">-->
+<!--          <label for="inputEndRange" class="form-label">End Range</label>-->
+<!--          <select th:field="*{endRange}" id="inputEndRange" class="form-select">-->
+<!--            <option value="" selected>Choose...</option>-->
+<!--            <option th:value="AM">AM</option>-->
+<!--            <option th:value="PM">PM</option>-->
+<!--          </select>-->
+<!--        </div>-->
+<!--        <div class="text-center">-->
+<!--          <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--          <button type="reset" class="btn btn-secondary">Reset</button>-->
+<!--        </div>-->
+<!--      </form>&lt;!&ndash; End Multi Columns Form &ndash;&gt;-->
 
     </div>
   </div>
@@ -316,17 +357,17 @@
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/chart.js/chart.min.js"></script>
-<script src="assets/vendor/echarts/echarts.min.js"></script>
-<script src="assets/vendor/quill/quill.min.js"></script>
-<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-<script src="assets/vendor/tinymce/tinymce.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/vendor/chart.js/chart.min.js"></script>
+<script src="../assets/vendor/echarts/echarts.min.js"></script>
+<script src="../assets/vendor/quill/quill.min.js"></script>
+<script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="../assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="../assets/vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
+<script src="../assets/js/main.js"></script>
 
 </body>
 

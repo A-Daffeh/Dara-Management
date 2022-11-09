@@ -1,6 +1,7 @@
 package com.icops.DaraManagement.controller;
 
 import com.icops.DaraManagement.model.Parent;
+import com.icops.DaraManagement.model.Student;
 import com.icops.DaraManagement.model.enums.Gender;
 import com.icops.DaraManagement.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequestMapping("/parents")
 public class ParentController {
 
     @Autowired
     private ParentService parentService;
 
-    @GetMapping("/parents")
+    @GetMapping("")
     public String allParents(Model model) {
         List<Parent> parents = parentService.allParents();
         model.addAttribute("parents", parents);
@@ -26,17 +28,24 @@ public class ParentController {
 
     }
 
-    @GetMapping("addParent")
+    @GetMapping("/add")
     public String addParent(Model model) {
         Parent parent = new Parent();
         model.addAttribute("parent", parent);
         return "parents/create";
     }
 
-    @PostMapping("/newParent")
+    @PostMapping("/new")
     public String createParent(@ModelAttribute Parent parent) {
         parentService.create(parent);
         return "redirect:/parents";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editCountry(@PathVariable(value = "id") long id, Model model) {
+        Parent parent = getParentById(id);
+        model.addAttribute("parent", parent);
+        return "parents/edit";
     }
 
     @PutMapping("/{id}")
@@ -48,12 +57,9 @@ public class ParentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Parent> getParentById(@PathVariable("id") Long id) {
+    public Parent getParentById(@PathVariable("id") Long id) {
         Parent parent = parentService.findById(id);
-        if (parent != null) {
-            return new ResponseEntity<>(parent, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return parent;
     }
 
     @GetMapping("/{gender}")
