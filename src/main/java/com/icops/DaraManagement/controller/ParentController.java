@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class ParentController {
 
     @Autowired
     private ParentService parentService;
+    @Autowired
+    private StudentController studentController;
 
     @GetMapping("/parents")
     public String allParents(Model model) {
@@ -29,15 +32,20 @@ public class ParentController {
     }
 
     @GetMapping("/parents/add")
-    public String addParent(Model model) {
+    public String addParent(Model model,@ModelAttribute("fullName") String fullName, @ModelAttribute ("studentId") Long studentId) {
+
         Parent parent = new Parent();
         model.addAttribute("parent", parent);
+        model.addAttribute("studentId", studentId);
+        model.addAttribute("fullName", fullName);
         return "parents/create";
     }
 
     @PostMapping("parents/create")
-    public String createParent(@ModelAttribute Parent parent) {
+    public String createParent(Model model, @ModelAttribute Parent parent) {
         parentService.create(parent);
+        model.getAttribute("studentId");
+        model.getAttribute("fullName");
         return "redirect:/parents";
     }
 

@@ -10,9 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 @Controller
@@ -35,11 +38,15 @@ public class StudentController {
     }
 
     @PostMapping("/students/create")
-    public String createStudent(@ModelAttribute("student")  @Valid Student student) {
+    public String createStudent(@ModelAttribute("student") @Valid Student student, RedirectAttributes redirectAttributes) {
 
         studentService.create(student);
-        return "redirect:/students";
+        redirectAttributes.addAttribute("studentId", student.getId());
+        redirectAttributes.addAttribute("fullName", student.getFirstName() + " "+ student.getLastName());
+        return "redirect:/parents/add";
     }
+
+
 
     @GetMapping("/editStudent/{id}")
     public String editStudent(@PathVariable(value = "id") long id, Model model) {
