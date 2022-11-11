@@ -14,7 +14,7 @@
 
     <!-- Google Fonts -->
     <link th:href="@{https://fonts.gstatic.com}" rel="preconnect">
-    <link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}" rel="stylesheet">
+    <link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans+:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -225,7 +225,7 @@
             <h5 class="card-title">Add New Student</h5>
 
             <!-- Multi Columns Form -->
-            <form class="row g-3" th:object="${student}" th:action="@{/students/create}" method="POST">
+            <form class="row g-3 form" th:object="${student}" th:action="@{/students/create}" method="POST">
                 <div class="col-md-4">
                     <label for="inputFirstName" class="form-label">First Name</label>
                     <input type="text" th:field="*{firstName}" class="form-control" id="inputFirstName">
@@ -240,10 +240,10 @@
                 </div>
                 <div class="col-md-4">
                     <label for="inputGender" class="form-label">Gender</label>
-                    <select id="inputGender" class="form-select">
+                    <select th:field="*{gender}"  id="inputGender" class="form-select">
                         <option value="" selected>Choose...</option>
-                        <option th:value="male">Male</option>
-                        <option th:value="female">Female</option>
+                        <option th:value="Male">Male</option>
+                        <option th:value="Female">Female</option>
                     </select>
                 </div>
                 <div class="col-md-4">
@@ -251,23 +251,24 @@
                     <input type="date" th:field="*{dob}" class="form-control" id="inputDOB" placeholder="Enter Date Of Birth">
                 </div>
                 <div class="col-md-4">
-                    <label for="inputPhone" class="form-label">Primary Phone</label>
-                    <input type="text" th:field="*{primaryPhone}" class="form-control" id="inputPhone">
+                    <label for="primaryPhone" class="form-label">Primary Phone</label>
+                    <input type="text" th:field="*{primaryPhone}" class="form-control" id="primaryPhone">
+                    <div class="alert alert-warning" th:if="${#fields.hasErrors('primaryPhone')}" th:errors="*{primaryPhone}"></div>
                 </div>
                 <div class="col-md-6">
                     <label for="inputAttndMode" class="form-label">Attendance Mode</label>
                     <select th:field="*{attendanceMode}" id="inputAttndMode" class="form-select">
                         <option value="" selected>Choose...</option>
-                        <option th:value="online">Online</option>
-                        <option th:value="in-person">In Person</option>
+                        <option th:value="Online">Online</option>
+                        <option th:value="In-person">In Person</option>
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label for="inputRecitLevel" class="form-label">Recitation Level</label>
                     <select th:field="*{recitationLevel}" id="inputRecitLevel" class="form-select">
                         <option value="" selected>Choose...</option>
-                        <option th:value="basics">Basics</option>
-                        <option th:value="quran">Quran</option>
+                        <option th:value="Basics">Basics</option>
+                        <option th:value="Quran">Quran</option>
                     </select>
                 </div>
                 <div class="col-6">
@@ -284,9 +285,10 @@
                 </div>
                 <div class="col-md-3">
                     <label for="inputState" class="form-label">State</label>
-                    <select id="inputState" class="form-select">
+                    <select th:field="*{address.state}" id="inputState" class="form-select">
                         <option value="" selected>Choose...</option>
                         <option th:value="WA">WA</option>
+                        <option th:value="NY">NY</option>
                     </select>
                 </div>
 
@@ -320,9 +322,31 @@
                     </select>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit</button>
                     <button type="reset" class="btn btn-secondary">Reset</button>
+
+                    <div class="modal modal-warning fade in" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span></button>
+                                    <h5 class="modal-title">Delete User</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <h3>Are you sure want to delete this user?</h3>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                                    <a type="button" class="btn btn-danger"><i class="fa fa-check"></i>&nbsp;Yes</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+
+
             </form><!-- End Multi Columns Form -->
 
         </div>

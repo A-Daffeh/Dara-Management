@@ -1,6 +1,7 @@
 package com.icops.DaraManagement.controller;
 
 import com.icops.DaraManagement.model.Parent;
+import com.icops.DaraManagement.model.Student;
 import com.icops.DaraManagement.model.enums.Gender;
 import com.icops.DaraManagement.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -39,22 +41,27 @@ public class ParentController {
         return "redirect:/parents";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editParent/{id}")
     public String editCountry(@PathVariable(value = "id") long id, Model model) {
         Parent parent = getParentById(id);
         model.addAttribute("parent", parent);
         return "parents/edit";
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Parent> updateParent(@RequestBody Parent parent, @PathVariable Long id){
-
-        Parent updatedParent = parentService.updateParent(parent, id);
-        return new ResponseEntity<>(updatedParent, HttpStatus.OK);
-
+    @PostMapping("/updateParent/{id}")
+    public String updateParent(@PathVariable("id") long id, @Valid Parent parent) {
+        parentService.create(parent);
+        return "redirect:/parents";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/showParent/{id}")
+    public String viewParent(@PathVariable(value = "id") long id, Model model) {
+        Parent parent = getParentById(id);
+        model.addAttribute("parent", parent);
+        return "/parents/show";
+    }
+
+    @GetMapping("/parent/{id}")
     public Parent getParentById(@PathVariable("id") Long id) {
         Parent parent = parentService.findById(id);
         return parent;

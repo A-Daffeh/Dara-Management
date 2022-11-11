@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.stream.Stream;
 
 public enum AttendanceMode {
-    ONLINE("online"), IN_PERSON("in-person");
+    ONLINE("Online"), IN_PERSON("In-person");
 
     private final String value;
 

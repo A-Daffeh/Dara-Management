@@ -6,8 +6,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.stream.Stream;
 
 public enum RecitationLevel {
-    BASICS("basics"),
-    QURAN("quran");
+    BASICS("Basics"),
+    QURAN("Quran");
 
     private final String value;
 
