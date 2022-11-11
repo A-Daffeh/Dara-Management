@@ -226,7 +226,7 @@
             <h5 class="card-title">Update Student Info</h5>
 
             <!-- Multi Columns Form -->
-            <form class="row g-3" th:object="${student}" th:action="@{/students/new}" method="POST">
+            <form class="row g-3" th:object="${student}" th:action="@{/updateStudent/{id}(id=${student.id})}" method="POST">
                 <div class="col-md-4">
                     <label for="inputFirstName" class="form-label">First Name</label>
                     <input type="text" th:field="*{firstName}" class="form-control" id="inputFirstName">
@@ -243,8 +243,8 @@
                     <label for="inputGender" class="form-label">Gender</label>
                     <select th:field="*{gender}" id="inputGender" class="form-select">
                         <option value="" selected>Choose...</option>
-                        <option th:value="male">Male</option>
-                        <option th:value="female">Female</option>
+                        <option th:value="Male">Male</option>
+                        <option th:value="Female">Female</option>
                     </select>
                 </div>
                 <div class="col-md-4">
@@ -259,16 +259,16 @@
                     <label for="inputAttndMode" class="form-label">Attendance Mode</label>
                     <select th:field="*{attendanceMode}" id="inputAttndMode" class="form-select">
                         <option value="" selected>Choose...</option>
-                        <option th:value="online">Online</option>
-                        <option th:value="in-person">In Person</option>
+                        <option th:value="Online">Online</option>
+                        <option th:value="In-person">In Person</option>
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label for="inputRecitLevel" class="form-label">Recitation Level</label>
                     <select th:field="*{recitationLevel}" id="inputRecitLevel" class="form-select">
                         <option value="" selected>Choose...</option>
-                        <option th:value="basics">Basics</option>
-                        <option th:value="quran">Quran</option>
+                        <option th:value="Basics">Basics</option>
+                        <option th:value="Quran">Quran</option>
                     </select>
                 </div>
                 <div class="col-6">
@@ -288,6 +288,7 @@
                     <select th:field="*{address.state}" id="inputState" class="form-select">
                         <option value="" selected>Choose...</option>
                         <option th:value="WA">WA</option>
+                        <option th:value="NY">NY</option>
                     </select>
                 </div>
 

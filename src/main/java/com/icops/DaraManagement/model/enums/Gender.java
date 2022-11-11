@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.stream.Stream;
 
 public enum Gender {
-    MALE("male"), FEMALE("female");
+    MALE("Male"), FEMALE("Female");
 
     private String value;
     Gender(String v) {

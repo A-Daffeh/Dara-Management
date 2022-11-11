@@ -10,8 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 @Controller
 public class StudentController {
@@ -33,7 +35,8 @@ public class StudentController {
     }
 
     @PostMapping("/students/create")
-    public String createStudent(@ModelAttribute("student") Student student) {
+    public String createStudent(@ModelAttribute("student")  @Valid Student student) {
+
         studentService.create(student);
         return "redirect:/students";
     }
@@ -43,6 +46,12 @@ public class StudentController {
         Student student = getStudent(id);
         model.addAttribute("student", student);
         return "students/edit";
+    }
+
+    @PostMapping("/updateStudent/{id}")
+    public String updateStudent(@PathVariable("id") long id, @Valid Student student) {
+        studentService.create(student);
+        return "redirect:/students";
     }
     @GetMapping("/showStudent/{id}")
     public String viewStudent(@PathVariable(value = "id") long id, Model model) {
@@ -75,10 +84,6 @@ public class StudentController {
         return student;
     }
 
-    @PutMapping("/updateStudent")
-    public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
-        Student newStudent = studentService.create(student);
-        return new ResponseEntity<>(newStudent, HttpStatus.OK);
-    }
+
 
 }

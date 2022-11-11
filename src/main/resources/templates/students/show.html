@@ -306,10 +306,16 @@
               <span th:text="${student.endTime}"></span>
               <span th:text="${student.endRange}"></span>
             </div>
+            <div class="text-center">
+              <a th:href="@{/editStudent/{id}(id=${student.id})}"><button type="button" class="btn btn-primary">Edit</button></a>
+              <button onclick='javascript:window.history.back()' type="button" class="btn btn-secondary">Back</button>
+
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 
   <!---- END OF FORM -------->

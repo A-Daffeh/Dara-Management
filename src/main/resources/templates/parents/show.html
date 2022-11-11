@@ -41,7 +41,7 @@
 
   <div class="d-flex align-items-center justify-content-between">
     <a href="index.html" class="logo d-flex align-items-center">
-      <img src="assets/img/logo.png" alt="">
+      <img src="../assets/img/logo.png" alt="">
       <span class="d-none d-lg-block">ICOPS</span>
     </a>
     <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -214,57 +214,91 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a th:href="@{/dashboard}">Dashboard</a></li>
         <li class="breadcrumb-item">Pages</li>
-        <li class="breadcrumb-item active">All Students</li>
+        <li class="breadcrumb-item active">Show Parent</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
 
+  <!--- START OF FORM ----->
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">View Parent Info</h5>
+
+      <div class="card col-md-8 mx-auto">
+        <div class="card-body">
+          <h5 class="card-title">Personal Info</h5>
+
+          <div class="row">
+            <div class="col-lg-3 col-md-4 label ">Full Name</div>
+            <div class="col-lg-9 col-md-8">
+              <span th:text="${parent.firstName}"></span>
+              <span th:text="${parent.middleName}"></span>
+              <span th:text="${parent.lastName}"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-3 col-md-4 label">Gender</div>
+            <div class="col-lg-9 col-md-8" th:text="${parent.gender}"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-3 col-md-4 label">Email</div>
+            <div class="col-lg-9 col-md-8" th:text="${parent.email}"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-3 col-md-4 label">Primary Phone</div>
+            <div class="col-lg-9 col-md-8" th:text="${parent.primaryPhone}"></div>
+          </div>
+
+          <h5 class="card-title">Address Info</h5>
+
+          <div class="row">
+            <div class="col-lg-3 col-md-4 label">Address Line 1</div>
+            <div class="col-lg-9 col-md-8" th:text="${parent.address.addressLine1}"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-3 col-md-4 label">Address Line 2</div>
+            <div class="col-lg-9 col-md-8" th:text="${parent.address.addressLine2}"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-3 col-md-4 label">City</div>
+            <div class="col-lg-9 col-md-8" th:text="${parent.address.city}"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-3 col-md-4 label">State</div>
+            <div class="col-lg-9 col-md-8" th:text="${parent.address.state}"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-3 col-md-4 label">Postal Code</div>
+            <div class="col-lg-9 col-md-8" th:text="${parent.address.postalCode}"></div>
+          </div>
+
+
+
+            <div class="text-center">
+              <a th:href="@{/editparent/{id}(id=${parent.id})}"><button type="button" class="btn btn-primary">Edit</button></a>
+              <button onclick='javascript:window.history.back()' type="button" class="btn btn-secondary">Back</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!---- END OF FORM -------->
+
   <section class="section">
     <div class="row">
       <div class="col-lg-12">
-
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">List of students <a th:href="@{/students/add}"><button type="button" class="btn btn-outline-primary my-button">New Student</button></a> </h5>
-
-            <!-- Table with hoverable rows -->
-            <table class="table table-hover">
-              <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Full Name</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Level</th>
-                <th scope="col">Address</th>
-                <th scope="col">Action</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr th:each="student: ${students}">
-                <th th:text="${student.id}" scope="row"></th>
-                <td>
-                  <span th:text="${student.firstName}"></span>
-                  <span th:text="${student.middleName}"></span>
-                  <span th:text="${student.lastName}"></span>
-                </td>
-                <td th:text="${student.gender}"></td>
-                <td th:text="${student.recitationLevel}"></td>
-                <td th:text="${student.address.addressLine1}"></td>
-                <td>
-                  <div class="btn-group">
-                    <a th:href="@{/editStudent/{id}(id=${student.id})}"><i class="bi bi-pencil-fill"></i> Edit </a>
-                    &nbsp;&nbsp; &nbsp;
-                    <a th:href="@{/showStudent/{id}(id=${student.id})}"><i class="bi bi-eye-fill"></i> View</a>
-                  </div>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-            <!-- End Table with hoverable rows -->
-
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -288,17 +322,17 @@
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/chart.js/chart.min.js"></script>
-<script src="assets/vendor/echarts/echarts.min.js"></script>
-<script src="assets/vendor/quill/quill.min.js"></script>
-<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-<script src="assets/vendor/tinymce/tinymce.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/vendor/chart.js/chart.min.js"></script>
+<script src="../assets/vendor/echarts/echarts.min.js"></script>
+<script src="../assets/vendor/quill/quill.min.js"></script>
+<script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="../assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="../assets/vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
+<script src="../assets/js/main.js"></script>
 
 </body>
 

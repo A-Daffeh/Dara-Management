@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -19,8 +20,10 @@ import java.util.List;
 @Slf4j
 @Entity
 public class Student extends PersonDetails {
-    @Column
-    private String dob;
+
+    @Column(columnDefinition = "DATE")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dob;
 
     private RecitationLevel recitationLevel;
     private AttendanceMode attendanceMode;

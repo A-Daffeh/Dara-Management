@@ -225,7 +225,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">List of students <a th:href="@{/addParent}"><button type="button" class="btn btn-outline-primary my-button">New Parent</button></a> </h5>
+                        <h5 class="card-title">List of Parents <a th:href="@{/parents/add}"><button type="button" class="btn btn-outline-primary my-button">New Parent</button></a> </h5>
 
                         <!-- Table with hoverable rows -->
                         <table class="table table-hover">
@@ -241,14 +241,16 @@
                             </thead>
                             <tbody>
                             <tr th:each="parent: ${parents}">
-                                <th scope="row">1</th>
+                                <th th:text="${parent.id}" scope="row"></th>
                                 <td th:text="${parent.firstName}"></td>
                                 <td th:text="${parent.middleName}"></td>
                                 <td th:text="${parent.lastName}"></td>
                                 <td th:text="${parent.gender}"></td>
                                 <td>
                                     <div class="btn-group">
-                                        <a th:href="@{'/editParent/' + ${parent.id}}"><i class="bi bi-pencil-fill"></i>edit</a>
+                                        <a th:href="@{/editParent/{id}(id=${parent.id})}"><i class="bi bi-pencil-fill"></i> Edit</a>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <a th:href="@{/showParent/{id}(id=${parent.id})}"><i class="bi bi-eye-fill"></i> View</a>
                                     </div>
                                 </td>
                             </tr>

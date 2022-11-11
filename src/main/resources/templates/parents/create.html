@@ -226,7 +226,7 @@
       <h5 class="card-title">Add New Parent</h5>
 
       <!-- Multi Columns Form -->
-      <form class="row g-3" th:object="${parent}" th:action="@{/newParent}" method="POST">
+      <form class="row g-3" th:object="${parent}" th:action="@{/parents/create}" method="POST">
         <div class="col-md-4">
           <label for="inputFirstName" class="form-label">First Name</label>
           <input type="text" th:field="*{firstName}" class="form-control" id="inputFirstName">
@@ -241,7 +241,7 @@
         </div>
         <div class="col-md-4">
           <label for="inputGender" class="form-label">Gender</label>
-          <select id="inputGender" class="form-select">
+          <select th:field="*{gender}" id="inputGender" class="form-select">
             <option value="" selected>Choose...</option>
             <option th:value="male">Male</option>
             <option th:value="female">Female</option>
@@ -269,7 +269,7 @@
         </div>
         <div class="col-md-3">
           <label for="inputState" class="form-label">State</label>
-          <select id="inputState" class="form-select">
+          <select th:field="*{address.state}" id="inputState" class="form-select">
             <option value="" selected>Choose...</option>
             <option th:value="WA">WA</option>
           </select>
